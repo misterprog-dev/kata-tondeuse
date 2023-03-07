@@ -22,4 +22,18 @@ public class MowerTest {
         String actualMessage = exception.getMessage();
         assertTrue(actualMessage.contains(expectedMessage));
     }
+
+    @Test
+    public void shoud_Return_exception_When_FileFormatIsNotCorrect() {
+        // given
+        Mower mower = new Mower();
+
+        // when
+        Exception exception = assertThrows(FileFormatInvalidException.class, mower::process);
+
+        // then
+        String expectedMessage = "File format invalid";
+        String actualMessage = exception.getMessage();
+        assertTrue(actualMessage.contains(expectedMessage));
+    }
 }
