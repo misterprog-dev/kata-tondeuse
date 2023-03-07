@@ -18,7 +18,7 @@ public class MowerTest {
         Exception exception = assertThrows(FileNotFoundException.class, mower::process);
 
         // then
-        String expectedMessage = "File not exists";
+            String expectedMessage = "File not exists";
         String actualMessage = exception.getMessage();
         assertTrue(actualMessage.contains(expectedMessage));
     }
