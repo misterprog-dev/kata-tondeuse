@@ -26,10 +26,8 @@ public class MowerService {
 
         while(fileLinesIterator.hasNext()) {
             Position mowerPosition = getPosition(fileLinesIterator.next());
-            String mowerControlLine = fileLinesIterator.next();
-            String[] listOfCommands = mowerControlLine.split("");
-            List<String> commands = Arrays.asList(listOfCommands);
-            mowers.add(new Mower(limitGarden, mowerPosition, commands));
+            List<String> mowerCommands = getCommands(fileLinesIterator.next());
+            mowers.add(new Mower(limitGarden, mowerPosition, mowerCommands));
         }
     }
 
@@ -65,6 +63,10 @@ public class MowerService {
 
     private boolean isNotInitialPositionValidForMower(String[] line) {
         return stream(line).count() < 3 || !isNumeric(line[0]) || !isNumeric(line[1]);
+    }
+
+    private List<String> getCommands(String mowerControlLine) {
+        return Arrays.asList(mowerControlLine.split(""));
     }
 
     public List<Mower> getMowers() {
