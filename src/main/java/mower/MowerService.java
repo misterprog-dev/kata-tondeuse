@@ -21,6 +21,16 @@ public class MowerService {
         Iterator<String> fileLinesIterator = fileLines.iterator();
         String[] firstLineOfFile = fileLinesIterator.next().split(" ");
         LimitGarden limitGarden = getLimitGarden(firstLineOfFile);
+
+        while(fileLinesIterator.hasNext()) {
+            String mowerInitialPosition = fileLinesIterator.next();
+            String[] splitOfMowerPosition = mowerInitialPosition.split(" ");
+            mowers.add(new Mower(limitGarden, new Position(parseInt(splitOfMowerPosition[0]),
+                            parseInt(splitOfMowerPosition[1]),
+                            splitOfMowerPosition[2]))
+            );
+            fileLinesIterator.next();
+        }
     }
 
     private static void ValidateFileContent(List<String> fileLines) throws FileNotFoundException, FileFormatInvalidException {
@@ -46,5 +56,4 @@ public class MowerService {
     public List<Mower> getMowers() {
         return mowers;
     }
-
 }
