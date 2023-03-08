@@ -7,13 +7,9 @@ public class Mower {
     private Position position;
     private List<Command> commands;
 
-    public Mower(LimitGarden limitGarden, Position position) {
+    public Mower(LimitGarden limitGarden, Position position, List<Command> commands) {
         this.limitGarden = limitGarden;
         this.position = position;
-    }
-
-    public Mower(LimitGarden limitGarden, Position position, List<Command> commands) {
-        this(limitGarden, position);
         this.commands = commands;
     }
 
