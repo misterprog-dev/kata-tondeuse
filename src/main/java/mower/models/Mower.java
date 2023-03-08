@@ -17,10 +17,6 @@ public class Mower {
         this.commands = commands;
     }
 
-    public LimitGarden getLimitGarden() {
-        return limitGarden;
-    }
-
     public Position getPosition() {
         return position;
     }
@@ -37,17 +33,10 @@ public class Mower {
     }
 
     private void move(Command command) {
-        if (Command.RIGHT.equals(command)) {
-           position.turnRight();
-        }
-
-        if (Command.LEFT.equals(command)) {
-            position.turnLeft();
-        }
-
-        if (Command.GO_AHEAD.equals(command)) {
-            position.goAhead(limitGarden);
-        }
-
+        switch (command) {
+            case RIGHT -> position.turnRight();
+            case LEFT -> position.turnLeft();
+            case GO_AHEAD -> position.goAhead(limitGarden);
+        };
     }
 }
