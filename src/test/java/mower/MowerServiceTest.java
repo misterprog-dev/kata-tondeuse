@@ -10,6 +10,7 @@ import java.io.FileNotFoundException;
 import java.util.List;
 
 import static java.util.Arrays.asList;
+import static java.util.stream.Collectors.toList;
 import static org.junit.Assert.*;
 
 public class MowerServiceTest {
@@ -58,7 +59,10 @@ public class MowerServiceTest {
         assertEquals(firstMower.getPosition().getX(), 1);
         assertEquals(firstMower.getPosition().getDirection(), "N");
         assertEquals(firstMower.getCommands().size(), 8);
-        assertEquals(firstMower.getCommands(), asList("G","A", "G", "A", "G", "A", "G", "A"));
+        List<String> commandsValue = firstMower.getCommands().stream()
+                        .map(Command::getCode)
+                        .collect(toList());
+        assertEquals(commandsValue, asList("G","A", "G", "A", "G", "A", "G", "A"));
     }
 
     @Test

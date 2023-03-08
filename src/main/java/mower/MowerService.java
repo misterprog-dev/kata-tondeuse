@@ -12,6 +12,7 @@ import java.util.List;
 
 import static java.lang.Integer.parseInt;
 import static java.util.Arrays.stream;
+import static java.util.stream.Collectors.toList;
 import static org.apache.commons.lang3.StringUtils.isNumeric;
 
 public class MowerService {
@@ -39,7 +40,9 @@ public class MowerService {
     private void constructMowers(Iterator<String> fileLinesIterator, LimitGarden limitGarden) throws MowerInitialPositionException {
         while(fileLinesIterator.hasNext()) {
             Position mowerPosition = getPosition(fileLinesIterator.next());
-            List<String> mowerCommands = getCommands(fileLinesIterator.next());
+            List<Command> mowerCommands = getCommands(fileLinesIterator.next()).stream()
+                    .map(Command::fromCode)
+                    .collect(toList());
             mowers.add(new Mower(limitGarden, mowerPosition, mowerCommands));
         }
     }

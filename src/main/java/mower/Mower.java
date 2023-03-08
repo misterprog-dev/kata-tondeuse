@@ -6,14 +6,14 @@ import java.util.List;
 public class Mower {
     private LimitGarden limitGarden;
     private Position position;
-    private List<String> commands;
+    private List<Command> commands;
 
     public Mower(LimitGarden limitGarden, Position position) {
         this.limitGarden = limitGarden;
         this.position = position;
     }
 
-    public Mower(LimitGarden limitGarden, Position position, List<String> commands) {
+    public Mower(LimitGarden limitGarden, Position position, List<Command> commands) {
         this(limitGarden, position);
         this.commands = commands;
     }
@@ -26,7 +26,7 @@ public class Mower {
         return position;
     }
 
-    public List<String> getCommands() {
+    public List<Command> getCommands() {
         return commands;
     }
 }
