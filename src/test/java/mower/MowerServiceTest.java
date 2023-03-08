@@ -8,8 +8,7 @@ import org.junit.Test;
 import java.io.FileNotFoundException;
 
 import static java.util.Arrays.asList;
-import static org.junit.Assert.assertThrows;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 public class MowerServiceTest {
     @Test
@@ -43,5 +42,14 @@ public class MowerServiceTest {
         String expectedMessage = "Garden size is invalid";
         String actualMessage = exception.getMessage();
         assertTrue(actualMessage.contains(expectedMessage));
+    }
+
+    @Test
+    public void should_constructMower_WithFileContent() throws InvalidGardenSizeException, FileNotFoundException, FileFormatInvalidException {
+        // when
+        MowerService mowerService = new MowerService(asList("5 5", "1 2 N", "GAGAGAGA", "3 3 E", "AADAAGAGA"));
+
+        // then
+        assertEquals(mowerService.getMowers().size(), 2);
     }
 }

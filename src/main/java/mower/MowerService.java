@@ -19,7 +19,7 @@ public class MowerService {
         ValidateFileContent(fileLines);
 
         Iterator<String> fileLinesIterator = fileLines.iterator();
-        String[] firstLineOfFile = " ".split(fileLinesIterator.next());
+        String[] firstLineOfFile = fileLinesIterator.next().split(" ");
         LimitGarden limitGarden = getLimitGarden(firstLineOfFile);
     }
 
@@ -41,6 +41,10 @@ public class MowerService {
 
     private boolean isNotGardenSizeValid(String[] line) {
         return stream(line).count() < 2 || !isNumeric(line[0]) || !isNumeric(line[1]);
+    }
+
+    public List<Mower> getMowers() {
+        return mowers;
     }
 
 }
