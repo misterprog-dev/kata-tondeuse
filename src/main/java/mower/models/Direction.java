@@ -24,4 +24,26 @@ public enum Direction {
                 .findFirst();
         return direction.orElse(null);
     }
+
+    public Direction getRight() {
+        Direction direction = fromCode(code);
+
+        if (code.equals(NORTH.getCode())) {
+            direction = EAST;
+        }
+
+        if (code.equals(SOUTH.getCode())) {
+            direction = WEST;
+        }
+
+        if (code.equals(WEST.getCode())) {
+            direction = NORTH;
+        }
+
+        if (code.equals(EAST.getCode())) {
+            direction = SOUTH;
+        }
+
+        return direction;
+    }
 }

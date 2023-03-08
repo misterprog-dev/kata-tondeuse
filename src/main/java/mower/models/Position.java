@@ -28,4 +28,8 @@ public class Position {
     public Direction getDirection() {
         return direction;
     }
+
+    public void turnRight() {
+        this.direction = direction.getRight();
+    }
 }

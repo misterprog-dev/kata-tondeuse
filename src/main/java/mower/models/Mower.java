@@ -28,4 +28,17 @@ public class Mower {
     public List<Command> getCommands() {
         return commands;
     }
+
+    public Position run() {
+        for (Command command : commands) {
+            move(command);
+        }
+        return position;
+    }
+
+    private void move(Command command) {
+        if (Command.RIGHT.equals(command)) {
+           position.turnRight();
+        }
+    }
 }
