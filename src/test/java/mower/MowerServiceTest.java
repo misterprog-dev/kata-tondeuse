@@ -47,7 +47,7 @@ public class MowerServiceTest {
     }
 
     @Test
-    public void should_constructMower_WithLimitGardenAndTheirPosition() throws InvalidGardenSizeException, FileNotFoundException, FileFormatInvalidException, MowerInitialPositionException {
+    public void should_constructMower_WithLimitGardenAndPositionAndCommand() throws InvalidGardenSizeException, FileNotFoundException, FileFormatInvalidException, MowerInitialPositionException {
         // when
         MowerService mowerService = new MowerService(asList("5 5", "1 2 N", "GAGAGAGA", "3 3 E", "AADAAGAGA"));
 
@@ -57,6 +57,8 @@ public class MowerServiceTest {
         Mower firstMower = mowers.get(0);
         assertEquals(firstMower.getPosition().getX(), 1);
         assertEquals(firstMower.getPosition().getDirection(), "N");
+        assertEquals(firstMower.getCommands().size(), 8);
+        assertEquals(firstMower.getCommands(), asList("G","A", "G", "A", "G", "A", "G", "A"));
     }
 
     @Test
