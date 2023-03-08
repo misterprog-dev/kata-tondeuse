@@ -24,19 +24,23 @@ public class MowerService {
         String[] firstLineOfFile = fileLinesIterator.next().split(" ");
         LimitGarden limitGarden = getLimitGarden(firstLineOfFile);
 
-        while(fileLinesIterator.hasNext()) {
-            Position mowerPosition = getPosition(fileLinesIterator.next());
-            List<String> mowerCommands = getCommands(fileLinesIterator.next());
-            mowers.add(new Mower(limitGarden, mowerPosition, mowerCommands));
-        }
+        constructMowers(fileLinesIterator, limitGarden);
     }
 
-    private static void ValidateFileContent(List<String> fileLines) throws FileNotFoundException, FileFormatInvalidException {
+    private void ValidateFileContent(List<String> fileLines) throws FileNotFoundException, FileFormatInvalidException {
         if (fileLines == null) {
             throw new FileNotFoundException("File not exists");
         }
         if (fileLines.size() < 3 || fileLines.size() % 2 == 0) { // % 2 : each mower have 2 lines that concern it + first line to garden size.
             throw new FileFormatInvalidException("File format invalid");
+        }
+    }
+
+    private void constructMowers(Iterator<String> fileLinesIterator, LimitGarden limitGarden) throws MowerInitialPositionException {
+        while(fileLinesIterator.hasNext()) {
+            Position mowerPosition = getPosition(fileLinesIterator.next());
+            List<String> mowerCommands = getCommands(fileLinesIterator.next());
+            mowers.add(new Mower(limitGarden, mowerPosition, mowerCommands));
         }
     }
 
