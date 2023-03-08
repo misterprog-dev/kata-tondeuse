@@ -84,7 +84,7 @@ public class MowerServiceTest {
     @Test
     public void should_return_position_for_all_mower() throws InvalidGardenSizeException, MowerInitialPositionException, FileNotFoundException, FileFormatInvalidException {
         // Given
-        MowerService mowerService = new MowerService(asList("5 5", "1 2 N", "GAGAGAGA", "3 3 E", "AADAAGAGA"));
+        MowerService mowerService = new MowerService(asList("5 5", "1 2 N", "GAGAGAGAA", "3 3 E", "AADAADADDA"));
 
         // When
         List<Position> results = mowerService.launchMowers();
