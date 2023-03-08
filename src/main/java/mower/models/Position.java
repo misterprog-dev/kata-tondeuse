@@ -1,7 +1,5 @@
 package mower.models;
 
-import mower.models.Direction;
-
 public class Position {
     private int x;
     private int y;
