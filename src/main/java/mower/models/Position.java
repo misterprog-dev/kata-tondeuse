@@ -30,6 +30,10 @@ public class Position {
     }
 
     public void turnRight() {
-        this.direction = direction.getRight();
+        direction = direction.getRight();
+    }
+
+    public void turnLeft() {
+        direction = direction.getLeft();
     }
 }

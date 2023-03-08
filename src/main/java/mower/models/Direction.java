@@ -18,13 +18,6 @@ public enum Direction {
         return code;
     }
 
-    public static Direction fromCode(String code) {
-        Optional<Direction> direction = Arrays.stream(values())
-                .filter(value -> value.getCode().equalsIgnoreCase(code))
-                .findFirst();
-        return direction.orElse(null);
-    }
-
     public Direction getRight() {
         return switch(fromCode(code)) {
             case NORTH -> EAST;
@@ -32,5 +25,21 @@ public enum Direction {
             case WEST -> NORTH;
             case EAST -> SOUTH;
         };
+    }
+
+    public Direction getLeft() {
+        return switch(fromCode(code)) {
+            case NORTH -> WEST;
+            case SOUTH -> EAST;
+            case WEST -> SOUTH;
+            case EAST -> NORTH;
+        };
+    }
+
+    public static Direction fromCode(String code) {
+        Optional<Direction> direction = Arrays.stream(values())
+                .filter(value -> value.getCode().equalsIgnoreCase(code))
+                .findFirst();
+        return direction.orElse(null);
     }
 }

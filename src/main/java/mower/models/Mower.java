@@ -40,5 +40,9 @@ public class Mower {
         if (Command.RIGHT.equals(command)) {
            position.turnRight();
         }
+
+        if (Command.LEFT.equals(command)) {
+            position.turnLeft();
+        }
     }
 }
