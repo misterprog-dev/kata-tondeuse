@@ -35,12 +35,17 @@ public class Position {
         direction = direction.getLeft();
     }
 
-    public void goAhead() {
+    public void goAhead(LimitGarden limitGarden) {
         switch(direction) {
-            case NORTH -> y += 1;
-            case EAST -> x += 1;
-            case WEST -> x -= 1;
-            case SOUTH -> y -=1;
+            case NORTH:
+                if (limitGarden.getY() > y) y += 1;
+                break;
+            case EAST:
+                if (limitGarden.getX() > x) x += 1;
+            case WEST:
+                if (limitGarden.getX() > 0) x -= 1;
+            case SOUTH:
+                if (limitGarden.getY() > 0) y -= 1;
         };
     }
 }

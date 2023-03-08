@@ -46,7 +46,7 @@ public class Mower {
         }
 
         if (Command.GO_AHEAD.equals(command)) {
-            position.goAhead();
+            position.goAhead(limitGarden);
         }
 
     }
