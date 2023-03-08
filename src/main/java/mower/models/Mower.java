@@ -1,6 +1,5 @@
-package mower;
+package mower.models;
 
-import java.util.Collection;
 import java.util.List;
 
 public class Mower {

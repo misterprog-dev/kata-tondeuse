@@ -1,8 +1,9 @@
-package mower;
+package mower.services;
 
 import mower.exception.FileFormatInvalidException;
 import mower.exception.InvalidGardenSizeException;
 import mower.exception.MowerInitialPositionException;
+import mower.models.*;
 
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
@@ -37,6 +38,13 @@ public class MowerService {
         }
     }
 
+    private LimitGarden getLimitGarden(String[] line) throws InvalidGardenSizeException {
+        if (isNotGardenSizeValid(line)) {
+            throw new InvalidGardenSizeException("Garden size is invalid");
+        }
+        return new LimitGarden(parseInt(line[0]), parseInt(line[1]));
+    }
+
     private void constructMowers(Iterator<String> fileLinesIterator, LimitGarden limitGarden) throws MowerInitialPositionException {
         while(fileLinesIterator.hasNext()) {
             Position mowerPosition = getPosition(fileLinesIterator.next());
@@ -45,13 +53,6 @@ public class MowerService {
                     .collect(toList());
             mowers.add(new Mower(limitGarden, mowerPosition, mowerCommands));
         }
-    }
-
-    private LimitGarden getLimitGarden(String[] line) throws InvalidGardenSizeException {
-        if (isNotGardenSizeValid(line)) {
-            throw new InvalidGardenSizeException("Garden size is invalid");
-        }
-        return new LimitGarden(parseInt(line[0]), parseInt(line[1]));
     }
 
     private boolean isNotGardenSizeValid(String[] line) {
@@ -65,7 +66,7 @@ public class MowerService {
             throw new MowerInitialPositionException("Invalid position for Mower");
         }
 
-        return new Position(parseInt(splitOfMowerPosition[0]), parseInt(splitOfMowerPosition[1]), splitOfMowerPosition[2]);
+        return new Position(parseInt(splitOfMowerPosition[0]), parseInt(splitOfMowerPosition[1]), Direction.fromCode(splitOfMowerPosition[2]));
     }
 
     private boolean isNotInitialPositionValidForMower(String[] line) {

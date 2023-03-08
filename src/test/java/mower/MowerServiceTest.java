@@ -4,6 +4,10 @@ package mower;
 import mower.exception.FileFormatInvalidException;
 import mower.exception.InvalidGardenSizeException;
 import mower.exception.MowerInitialPositionException;
+import mower.models.Command;
+import mower.models.Direction;
+import mower.models.Mower;
+import mower.services.MowerService;
 import org.junit.Test;
 
 import java.io.FileNotFoundException;
@@ -57,7 +61,7 @@ public class MowerServiceTest {
         assertEquals(mowers.size(), 2);
         Mower firstMower = mowers.get(0);
         assertEquals(firstMower.getPosition().getX(), 1);
-        assertEquals(firstMower.getPosition().getDirection(), "N");
+        assertEquals(firstMower.getPosition().getDirection(), Direction.fromCode("N"));
         assertEquals(firstMower.getCommands().size(), 8);
         List<String> commandsValue = firstMower.getCommands().stream()
                         .map(Command::getCode)

@@ -1,4 +1,4 @@
-package mower;
+package mower.models;
 
 public class LimitGarden {
     private final int x;

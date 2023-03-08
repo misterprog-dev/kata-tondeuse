@@ -1,4 +1,4 @@
-package mower;
+package mower.models;
 
 import java.util.Arrays;
 import java.util.Optional;

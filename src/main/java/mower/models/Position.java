@@ -1,16 +1,18 @@
-package mower;
+package mower.models;
+
+import mower.models.Direction;
 
 public class Position {
     private int x;
     private int y;
-    private String direction;
+    private Direction direction;
 
     public Position(int x, int y) {
         this.x = x;
         this.y = y;
     }
 
-    public Position(int x, int y, String direction) {
+    public Position(int x, int y, Direction direction) {
         this(x, y);
         this.direction = direction;
     }
@@ -23,7 +25,7 @@ public class Position {
         return y;
     }
 
-    public String getDirection() {
+    public Direction getDirection() {
         return direction;
     }
 }
