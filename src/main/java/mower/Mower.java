@@ -13,6 +13,11 @@ public class Mower {
         this.position = position;
     }
 
+    public Mower(LimitGarden limitGarden, Position position, List<String> commands) {
+        this(limitGarden, position);
+        this.commands = commands;
+    }
+
     public LimitGarden getLimitGarden() {
         return limitGarden;
     }

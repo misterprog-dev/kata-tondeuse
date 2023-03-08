@@ -6,6 +6,7 @@ import mower.exception.MowerInitialPositionException;
 
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 
@@ -25,8 +26,10 @@ public class MowerService {
 
         while(fileLinesIterator.hasNext()) {
             Position mowerPosition = getPosition(fileLinesIterator.next());
-            mowers.add(new Mower(limitGarden, mowerPosition));
-            fileLinesIterator.next();
+            String mowerControlLine = fileLinesIterator.next();
+            String[] listOfCommands = mowerControlLine.split("");
+            List<String> commands = Arrays.asList(listOfCommands);
+            mowers.add(new Mower(limitGarden, mowerPosition, commands));
         }
     }
 
