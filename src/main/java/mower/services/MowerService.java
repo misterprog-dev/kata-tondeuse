@@ -81,7 +81,9 @@ public class MowerService {
         return mowers;
     }
 
-    public List<Position> launchMower() {
-        return new ArrayList<>();
+    public List<Position> launchMowers() {
+        List<Position> positions = new ArrayList<>(mowers.size());
+        mowers.forEach(mower -> positions.add(new Position(0, 0)));
+        return positions;
     }
 }

@@ -87,7 +87,7 @@ public class MowerServiceTest {
         MowerService mowerService = new MowerService(asList("5 5", "1 2 N", "GAGAGAGA", "3 3 E", "AADAAGAGA"));
 
         // When
-        List<Position> results = mowerService.launchMower();
+        List<Position> results = mowerService.launchMowers();
 
         // Then
         assertEquals(results.size(), 2);
