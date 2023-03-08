@@ -92,4 +92,19 @@ public class MowerServiceTest {
         // Then
         assertEquals(results.size(), 2);
     }
+
+    @Test
+    public void should_return_mower_position_with_turnRight() throws InvalidGardenSizeException, MowerInitialPositionException, FileNotFoundException, FileFormatInvalidException {
+        // Given
+        MowerService mowerService = new MowerService(asList("5 5", "1 2 N", "DD"));
+
+        // When
+        List<Position> results = mowerService.launchMowers();
+
+        // Then
+        assertEquals(results.size(), 1);
+        assertEquals(results.get(0).getX(), 1);
+        assertEquals(results.get(0).getY(), 2);
+        assertEquals(results.get(0).getDirection(), Direction.fromCode("S"));
+    }
 }
