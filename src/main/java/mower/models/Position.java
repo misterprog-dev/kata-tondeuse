@@ -36,4 +36,13 @@ public class Position {
     public void turnLeft() {
         direction = direction.getLeft();
     }
+
+    public void goAhead() {
+        switch(direction) {
+            case NORTH -> y += 1;
+            case EAST -> x += 1;
+            case WEST -> x -= 1;
+            case SOUTH -> y -=1;
+        };
+    }
 }

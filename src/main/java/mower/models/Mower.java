@@ -44,5 +44,10 @@ public class Mower {
         if (Command.LEFT.equals(command)) {
             position.turnLeft();
         }
+
+        if (Command.GO_AHEAD.equals(command)) {
+            position.goAhead();
+        }
+
     }
 }
