@@ -3,6 +3,7 @@ package mower;
 
 import mower.exception.FileFormatInvalidException;
 import mower.exception.InvalidGardenSizeException;
+import mower.exception.MowerInitialPositionException;
 import org.junit.Test;
 
 import java.io.FileNotFoundException;
@@ -51,5 +52,16 @@ public class MowerServiceTest {
 
         // then
         assertEquals(mowerService.getMowers().size(), 2);
+    }
+
+    @Test
+    public void should_return_exception_for_invalid_mowerInitalPosition() {
+        // when
+        Exception exception = assertThrows(MowerInitialPositionException.class, () -> new MowerService(asList("5 5", "1 2", "GAGAGAGA")));
+
+        // then
+        String expectedMessage = "Invalid position for Mower";
+        String actualMessage = exception.getMessage();
+        assertTrue(actualMessage.contains(expectedMessage));
     }
 }
