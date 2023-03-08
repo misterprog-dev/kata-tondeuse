@@ -80,4 +80,8 @@ public class MowerService {
     public List<Mower> getMowers() {
         return mowers;
     }
+
+    public List<Position> launchMower() {
+        return new ArrayList<>();
+    }
 }

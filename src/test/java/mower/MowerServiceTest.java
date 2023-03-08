@@ -7,6 +7,7 @@ import mower.exception.MowerInitialPositionException;
 import mower.models.Command;
 import mower.models.Direction;
 import mower.models.Mower;
+import mower.models.Position;
 import mower.services.MowerService;
 import org.junit.Test;
 
@@ -78,5 +79,17 @@ public class MowerServiceTest {
         String expectedMessage = "Invalid position for Mower";
         String actualMessage = exception.getMessage();
         assertTrue(actualMessage.contains(expectedMessage));
+    }
+
+    @Test
+    public void should_return_position_for_all_mower() throws InvalidGardenSizeException, MowerInitialPositionException, FileNotFoundException, FileFormatInvalidException {
+        // Given
+        MowerService mowerService = new MowerService(asList("5 5", "1 2 N", "GAGAGAGA", "3 3 E", "AADAAGAGA"));
+
+        // When
+        List<Position> results = mowerService.launchMower();
+
+        // Then
+        assertEquals(results.size(), 2);
     }
 }
