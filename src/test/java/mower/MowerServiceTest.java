@@ -46,7 +46,7 @@ public class MowerServiceTest {
     }
 
     @Test
-    public void should_constructMower_WithLimitGardenAndTheirPosition() throws InvalidGardenSizeException, FileNotFoundException, FileFormatInvalidException {
+    public void should_constructMower_WithLimitGardenAndTheirPosition() throws InvalidGardenSizeException, FileNotFoundException, FileFormatInvalidException, MowerInitialPositionException {
         // when
         MowerService mowerService = new MowerService(asList("5 5", "1 2 N", "GAGAGAGA", "3 3 E", "AADAAGAGA"));
 
