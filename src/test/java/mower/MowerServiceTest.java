@@ -7,6 +7,7 @@ import mower.exception.MowerInitialPositionException;
 import org.junit.Test;
 
 import java.io.FileNotFoundException;
+import java.util.List;
 
 import static java.util.Arrays.asList;
 import static org.junit.Assert.*;
@@ -51,7 +52,11 @@ public class MowerServiceTest {
         MowerService mowerService = new MowerService(asList("5 5", "1 2 N", "GAGAGAGA", "3 3 E", "AADAAGAGA"));
 
         // then
-        assertEquals(mowerService.getMowers().size(), 2);
+        List<Mower> mowers = mowerService.getMowers();
+        assertEquals(mowers.size(), 2);
+        Mower firstMower = mowers.get(0);
+        assertEquals(firstMower.getPosition().getX(), 1);
+        assertEquals(firstMower.getPosition().getDirection(), "N");
     }
 
     @Test

@@ -24,17 +24,8 @@ public class MowerService {
         LimitGarden limitGarden = getLimitGarden(firstLineOfFile);
 
         while(fileLinesIterator.hasNext()) {
-            String mowerInitialPosition = fileLinesIterator.next();
-            String[] splitOfMowerPosition = mowerInitialPosition.split(" ");
-
-            if (stream(splitOfMowerPosition).count() < 3 || !isNumeric(splitOfMowerPosition[0]) || !isNumeric(splitOfMowerPosition[1])) {
-                throw new MowerInitialPositionException("Invalid position for Mower");
-            }
-
-            mowers.add(new Mower(limitGarden, new Position(parseInt(splitOfMowerPosition[0]),
-                            parseInt(splitOfMowerPosition[1]),
-                            splitOfMowerPosition[2]))
-            );
+            Position mowerPosition = getPosition(fileLinesIterator.next());
+            mowers.add(new Mower(limitGarden, mowerPosition));
             fileLinesIterator.next();
         }
     }
@@ -57,6 +48,20 @@ public class MowerService {
 
     private boolean isNotGardenSizeValid(String[] line) {
         return stream(line).count() < 2 || !isNumeric(line[0]) || !isNumeric(line[1]);
+    }
+
+    private Position getPosition(String mowerPosition) throws MowerInitialPositionException {
+        String[] splitOfMowerPosition = mowerPosition.split(" ");
+
+        if (isNotInitialPositionValidForMower(splitOfMowerPosition)) {
+            throw new MowerInitialPositionException("Invalid position for Mower");
+        }
+
+        return new Position(parseInt(splitOfMowerPosition[0]), parseInt(splitOfMowerPosition[1]), splitOfMowerPosition[2]);
+    }
+
+    private boolean isNotInitialPositionValidForMower(String[] line) {
+        return stream(line).count() < 3 || !isNumeric(line[0]) || !isNumeric(line[1]);
     }
 
     public List<Mower> getMowers() {
