@@ -12,6 +12,7 @@ import mower.services.MowerService;
 import org.junit.Test;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.List;
 
 import static java.util.Arrays.asList;
@@ -19,13 +20,15 @@ import static java.util.stream.Collectors.toList;
 import static org.junit.Assert.*;
 
 public class MowerServiceTest {
+    private final String baseDirForTestData = "src/test/resources/data/";
+
     @Test
     public void should_Return_exception_When_FileDontExist() {
         // when
-        Exception exception = assertThrows(FileNotFoundException.class, () -> new MowerService(null));
+        Exception exception = assertThrows(FileNotFoundException.class, () -> new MowerService("//"));
 
         // then
-        String expectedMessage = "File not exists";
+        String expectedMessage = "File not found";
         String actualMessage = exception.getMessage();
         assertTrue(actualMessage.contains(expectedMessage));
     }
@@ -33,7 +36,7 @@ public class MowerServiceTest {
     @Test
     public void should_Return_exception_When_FileFormatIsNotCorrect() {
         // when
-        Exception exception = assertThrows(FileFormatInvalidException.class, () -> new MowerService(asList()));
+        Exception exception = assertThrows(FileFormatInvalidException.class, () -> new MowerService(baseDirForTestData + "IncorrectFormat.txt"));
 
         // then
         String expectedMessage = "File format invalid";
@@ -44,7 +47,7 @@ public class MowerServiceTest {
     @Test
     public void should_return_exception_for_invalid_garden() {
         // when
-        Exception exception = assertThrows(InvalidGardenSizeException.class, () -> new MowerService(asList("5 ", "1 2 N", "GAGAGAGA", "3 3 E", "AADAAGAGA")));
+        Exception exception = assertThrows(InvalidGardenSizeException.class, () -> new MowerService(baseDirForTestData + "InvalidGarden.txt"));
 
         // then
         String expectedMessage = "Garden size is invalid";
@@ -53,9 +56,9 @@ public class MowerServiceTest {
     }
 
     @Test
-    public void should_constructMower_WithLimitGardenAndPositionAndCommand() throws InvalidGardenSizeException, FileNotFoundException, FileFormatInvalidException, MowerInitialPositionException {
+    public void should_constructMower_WithLimitGardenAndPositionAndCommand() throws InvalidGardenSizeException, IOException, FileFormatInvalidException, MowerInitialPositionException {
         // when
-        MowerService mowerService = new MowerService(asList("5 5", "1 2 N", "GAGAGAGA", "3 3 E", "AADAAGAGA"));
+        MowerService mowerService = new MowerService(baseDirForTestData + "ConstructMower.txt");
 
         // then
         List<Mower> mowers = mowerService.getMowers();
@@ -73,7 +76,7 @@ public class MowerServiceTest {
     @Test
     public void should_return_exception_for_invalid_mowerInitalPosition() {
         // when
-        Exception exception = assertThrows(MowerInitialPositionException.class, () -> new MowerService(asList("5 5", "1 2", "GAGAGAGA")));
+        Exception exception = assertThrows(MowerInitialPositionException.class, () -> new MowerService(baseDirForTestData + "InvalidMowerInitialPosition.txt"));
 
         // then
         String expectedMessage = "Invalid position for Mower";
@@ -82,9 +85,9 @@ public class MowerServiceTest {
     }
 
     @Test
-    public void should_return_position_for_all_mower() throws InvalidGardenSizeException, MowerInitialPositionException, FileNotFoundException, FileFormatInvalidException {
+    public void should_return_position_for_all_mower() throws InvalidGardenSizeException, MowerInitialPositionException, IOException, FileFormatInvalidException {
         // Given
-        MowerService mowerService = new MowerService(asList("5 5", "1 2 N", "GAGAGAGAA", "3 3 E", "AADAADADDA"));
+        MowerService mowerService = new MowerService(baseDirForTestData + "PositionForAllMower.txt");
 
         // When
         List<Position> results = mowerService.launchMowers();
@@ -94,9 +97,9 @@ public class MowerServiceTest {
     }
 
     @Test
-    public void should_return_mower_position_with_turnRight() throws InvalidGardenSizeException, MowerInitialPositionException, FileNotFoundException, FileFormatInvalidException {
+    public void should_return_mower_position_with_turnRight() throws InvalidGardenSizeException, MowerInitialPositionException, IOException, FileFormatInvalidException {
         // Given
-        MowerService mowerService = new MowerService(asList("5 5", "1 2 N", "DD"));
+        MowerService mowerService = new MowerService(baseDirForTestData + "TurnRight.txt");
 
         // When
         List<Position> results = mowerService.launchMowers();
@@ -109,9 +112,9 @@ public class MowerServiceTest {
     }
 
     @Test
-    public void should_return_mower_position_with_turnLeft() throws InvalidGardenSizeException, MowerInitialPositionException, FileNotFoundException, FileFormatInvalidException {
+    public void should_return_mower_position_with_turnLeft() throws InvalidGardenSizeException, MowerInitialPositionException, IOException, FileFormatInvalidException {
         // Given
-        MowerService mowerService = new MowerService(asList("2 2", "1 1 N", "GGGGG"));
+        MowerService mowerService = new MowerService(baseDirForTestData + "TurnLeft.txt");
 
         // When
         List<Position> results = mowerService.launchMowers();
@@ -124,9 +127,9 @@ public class MowerServiceTest {
     }
 
     @Test
-    public void should_return_mower_position_with_goAhead() throws InvalidGardenSizeException, MowerInitialPositionException, FileNotFoundException, FileFormatInvalidException {
+    public void should_return_mower_position_with_goAhead() throws InvalidGardenSizeException, MowerInitialPositionException, IOException, FileFormatInvalidException {
         // Given
-        MowerService mowerService = new MowerService(asList("2 2", "1 1 N", "A"));
+        MowerService mowerService = new MowerService(baseDirForTestData + "GoAhead.txt");
 
         // When
         List<Position> results = mowerService.launchMowers();
@@ -139,9 +142,9 @@ public class MowerServiceTest {
     }
 
     @Test
-    public void should_return_mower_position_with_goAhead_and_passLimit() throws InvalidGardenSizeException, MowerInitialPositionException, FileNotFoundException, FileFormatInvalidException {
+    public void should_return_mower_position_with_goAhead_and_passLimit() throws InvalidGardenSizeException, MowerInitialPositionException, IOException, FileFormatInvalidException {
         // Given
-        MowerService mowerService = new MowerService(asList("2 2", "2 1 N", "AAAAAA"));
+        MowerService mowerService = new MowerService(baseDirForTestData + "GoAheadAndPassLimit.txt");
 
         // When
         List<Position> results = mowerService.launchMowers();
@@ -154,9 +157,9 @@ public class MowerServiceTest {
     }
 
     @Test
-    public void should_display_mower_final_position() throws InvalidGardenSizeException, MowerInitialPositionException, FileNotFoundException, FileFormatInvalidException {
+    public void should_display_mower_final_position() throws InvalidGardenSizeException, MowerInitialPositionException, IOException, FileFormatInvalidException {
         // Given
-        MowerService mowerService = new MowerService(asList("5 5", "1 2 N", "GAGAGAGAA", "3 3 E", "AADAADADDA"));
+        MowerService mowerService = new MowerService(baseDirForTestData + "MowerFinalPosition.txt");
         List<Position> positions = mowerService.launchMowers();
 
         // When

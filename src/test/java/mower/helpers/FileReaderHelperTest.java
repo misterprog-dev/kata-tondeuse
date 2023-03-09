@@ -24,7 +24,7 @@ public class FileReaderHelperTest {
     @Test
     public void shouldReturnFileContentAsString() throws IOException {
         // When
-        List<String> result = FileReaderHelper.readFile("src/test/resources/data/data.txt");
+        List<String> result = FileReaderHelper.readFile("src/test/resources/data/DisplayFinalResult.txt");
 
         // Then
         assertEquals(result, asList("5 5", "1 2 N", "GAGAGAGAA", "3 3 E", "AADAADADDA"));

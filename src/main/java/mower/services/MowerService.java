@@ -3,9 +3,11 @@ package mower.services;
 import mower.exception.FileFormatInvalidException;
 import mower.exception.InvalidGardenSizeException;
 import mower.exception.MowerInitialPositionException;
+import mower.helpers.FileReaderHelper;
 import mower.models.*;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
@@ -19,7 +21,8 @@ import static org.apache.commons.lang3.StringUtils.isNumeric;
 public class MowerService {
     private final List<Mower> mowers = new ArrayList<>();
 
-    public MowerService(List<String> fileLines) throws FileNotFoundException, FileFormatInvalidException, InvalidGardenSizeException, MowerInitialPositionException {
+    public MowerService(String filePath) throws IOException, FileFormatInvalidException, InvalidGardenSizeException, MowerInitialPositionException {
+        List<String> fileLines = FileReaderHelper.readFile(filePath);
         ValidateFileContent(fileLines);
 
         Iterator<String> fileLinesIterator = fileLines.iterator();
