@@ -7,10 +7,7 @@ import mower.models.LimitGarden;
 import mower.models.Mower;
 import mower.models.Position;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
 
 import static java.util.stream.Collectors.toList;
 import static mower.helpers.PositionHelper.getMowerPosition;
@@ -24,6 +21,7 @@ public class MowerHelper {
             Position position = getMowerPosition(fileLinesIterator.next());
             List<Command> mowerCommands = getCommands(fileLinesIterator.next()).stream()
                     .map(Command::fromCode)
+                    .filter(Objects::nonNull)
                     .collect(toList());
             mowers.add(new Mower(limitGarden, position, mowerCommands));
         }
