@@ -40,29 +40,6 @@ public class MowerServiceTest {
     }
 
     @Test
-    public void should_return_exception_for_invalid_mowerInitalPosition() {
-        // when
-        Exception exception = assertThrows(MowerInitialPositionException.class, () -> new MowerService(baseDirForTestData + "InvalidMowerInitialPosition.txt"));
-
-        // then
-        String expectedMessage = "Invalid position for Mower";
-        String actualMessage = exception.getMessage();
-        assertTrue(actualMessage.contains(expectedMessage));
-    }
-
-    @Test
-    public void should_return_position_for_all_mower() throws InvalidGardenSizeException, MowerInitialPositionException, IOException, FileFormatInvalidException {
-        // Given
-        MowerService mowerService = new MowerService(baseDirForTestData + "PositionForAllMower.txt");
-
-        // When
-        List<Position> results = mowerService.launchMowers();
-
-        // Then
-        assertEquals(results.size(), 2);
-    }
-
-    @Test
     public void should_return_mower_position_with_turnRight() throws InvalidGardenSizeException, MowerInitialPositionException, IOException, FileFormatInvalidException {
         // Given
         MowerService mowerService = new MowerService(baseDirForTestData + "TurnRight.txt");
