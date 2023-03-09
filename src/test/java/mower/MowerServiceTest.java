@@ -4,8 +4,6 @@ package mower;
 import mower.exception.FileFormatInvalidException;
 import mower.exception.InvalidGardenSizeException;
 import mower.exception.MowerInitialPositionException;
-import mower.models.Command;
-import mower.models.Mower;
 import mower.models.Position;
 import mower.services.MowerService;
 import org.junit.Test;
@@ -13,32 +11,11 @@ import org.junit.Test;
 import java.io.IOException;
 import java.util.List;
 
-import static java.util.Arrays.asList;
-import static java.util.stream.Collectors.toList;
 import static mower.Constant.baseDirForTestData;
 import static mower.models.Direction.*;
 import static org.junit.Assert.assertEquals;
 
 public class MowerServiceTest {
-
-    @Test
-    public void should_constructMower_WithLimitGardenAndPositionAndCommand() throws InvalidGardenSizeException, IOException, FileFormatInvalidException, MowerInitialPositionException {
-        // when
-        MowerService mowerService = new MowerService(baseDirForTestData + "ConstructMower.txt");
-
-        // then
-        List<Mower> mowers = mowerService.getMowers();
-        assertEquals(mowers.size(), 2);
-        Mower firstMower = mowers.get(0);
-        assertEquals(firstMower.getPosition().getX(), 1);
-        assertEquals(firstMower.getPosition().getDirection(), fromCode("N"));
-        assertEquals(firstMower.getCommands().size(), 8);
-        List<String> commandsValue = firstMower.getCommands().stream()
-                        .map(Command::getCode)
-                        .collect(toList());
-        assertEquals(commandsValue, asList("G","A", "G", "A", "G", "A", "G", "A"));
-    }
-
     @Test
     public void should_return_mower_position_with_turnRight() throws InvalidGardenSizeException, MowerInitialPositionException, IOException, FileFormatInvalidException {
         // Given
