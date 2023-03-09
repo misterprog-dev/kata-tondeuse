@@ -1,16 +1,10 @@
 package mower.helpers;
 
-import mower.exception.FileFormatInvalidException;
-import mower.exception.InvalidGardenSizeException;
 import mower.exception.MowerInitialPositionException;
+import mower.models.Direction;
 import mower.models.Position;
-import mower.services.MowerService;
 import org.junit.Test;
 
-import java.io.IOException;
-import java.util.List;
-
-import static mower.Constant.baseDirForTestData;
 import static org.junit.Assert.*;
 
 public class PositionHelperTest {
@@ -26,14 +20,11 @@ public class PositionHelperTest {
     }
 
     @Test
-    public void should_return_position_for_all_mower() throws InvalidGardenSizeException, MowerInitialPositionException, IOException, FileFormatInvalidException {
-        // Given
-        MowerService mowerService = new MowerService(baseDirForTestData + "PositionForAllMower.txt");
-
+    public void should_return_position_for_mower() throws MowerInitialPositionException {
         // When
-        List<Position> results = mowerService.launchMowers();
+        Position result = PositionHelper.getMowerPosition("3 2 E");
 
         // Then
-        assertEquals(results.size(), 2);
+        assertEquals(result, new Position(3, 2, Direction.EAST));
     }
 }

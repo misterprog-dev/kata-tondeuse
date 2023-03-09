@@ -55,4 +55,19 @@ public class Position {
     public String getFinalPosition() {
         return x + " " + y + " " + direction.getCode();
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+
+        if (obj.getClass() != this.getClass()) {
+            return false;
+        }
+
+        final Position other = (Position) obj;
+
+        return other.getY() == y && other.getX() == x && other.getDirection() == direction;
+    }
 }
