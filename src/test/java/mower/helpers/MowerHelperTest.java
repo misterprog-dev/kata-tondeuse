@@ -35,4 +35,21 @@ public class MowerHelperTest {
                 .collect(toList());
         assertEquals(commandsValue, asList("G","A", "G", "A", "G", "A", "G", "A"));
     }
+
+    @Test
+    public void should_ignore_unkonw_command() throws MowerInitialPositionException, FileFormatInvalidException {
+        // Given
+        Iterator<String> fileLinesIterator = asList("1 2 N", "GAGZXSDYTA").iterator();
+
+        // when
+        List<Mower> mowers = MowerHelper.constructMowers(fileLinesIterator, new LimitGarden(5, 5));
+
+        // then
+        Mower firstMower = mowers.get(0);
+        assertEquals(firstMower.getCommands().size(), 5);
+        List<String> commandsValue = firstMower.getCommands().stream()
+                .map(Command::getCode)
+                .collect(toList());
+        assertEquals(commandsValue, asList("G","A", "G", "D", "A"));
+    }
 }

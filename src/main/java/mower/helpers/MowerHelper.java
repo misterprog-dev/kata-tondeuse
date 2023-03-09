@@ -33,5 +33,4 @@ public class MowerHelper {
     static List<String> getCommands(String mowerControlLine) {
         return Arrays.asList(mowerControlLine.split(""));
     }
-
 }
