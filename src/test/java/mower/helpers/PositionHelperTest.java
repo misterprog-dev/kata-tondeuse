@@ -1,5 +1,6 @@
 package mower.helpers;
 
+import mower.exception.FileFormatInvalidException;
 import mower.exception.MowerInitialPositionException;
 import mower.models.Direction;
 import mower.models.Position;
@@ -26,5 +27,16 @@ public class PositionHelperTest {
 
         // Then
         assertEquals(result, new Position(3, 2, Direction.EAST));
+    }
+
+    @Test
+    public void should_except_unknown_position() {
+        // when
+        Exception exception = assertThrows(FileFormatInvalidException.class, () -> PositionHelper.getMowerPosition("1 2 Z"));
+
+        // then
+        String expectedMessage = "Invalid position for Mower";
+        String actualMessage = exception.getMessage();
+        assertTrue(actualMessage.contains(expectedMessage));
     }
 }
