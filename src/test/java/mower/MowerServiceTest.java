@@ -5,7 +5,6 @@ import mower.exception.FileFormatInvalidException;
 import mower.exception.InvalidGardenSizeException;
 import mower.exception.MowerInitialPositionException;
 import mower.models.Command;
-import mower.models.Direction;
 import mower.models.Mower;
 import mower.models.Position;
 import mower.services.MowerService;
@@ -17,7 +16,8 @@ import java.util.List;
 import static java.util.Arrays.asList;
 import static java.util.stream.Collectors.toList;
 import static mower.Constant.baseDirForTestData;
-import static org.junit.Assert.*;
+import static mower.models.Direction.*;
+import static org.junit.Assert.assertEquals;
 
 public class MowerServiceTest {
 
@@ -31,7 +31,7 @@ public class MowerServiceTest {
         assertEquals(mowers.size(), 2);
         Mower firstMower = mowers.get(0);
         assertEquals(firstMower.getPosition().getX(), 1);
-        assertEquals(firstMower.getPosition().getDirection(), Direction.fromCode("N"));
+        assertEquals(firstMower.getPosition().getDirection(), fromCode("N"));
         assertEquals(firstMower.getCommands().size(), 8);
         List<String> commandsValue = firstMower.getCommands().stream()
                         .map(Command::getCode)
@@ -49,9 +49,7 @@ public class MowerServiceTest {
 
         // Then
         assertEquals(results.size(), 1);
-        assertEquals(results.get(0).getX(), 1);
-        assertEquals(results.get(0).getY(), 2);
-        assertEquals(results.get(0).getDirection(), Direction.fromCode("S"));
+        assertEquals(results.get(0), new Position(1, 2, SOUTH));
     }
 
     @Test
@@ -64,9 +62,7 @@ public class MowerServiceTest {
 
         // Then
         assertEquals(results.size(), 1);
-        assertEquals(results.get(0).getX(), 1);
-        assertEquals(results.get(0).getY(), 1);
-        assertEquals(results.get(0).getDirection(), Direction.fromCode("W"));
+        assertEquals(results.get(0), new Position(1, 1, WEST));
     }
 
     @Test
@@ -79,9 +75,7 @@ public class MowerServiceTest {
 
         // Then
         assertEquals(results.size(), 1);
-        assertEquals(results.get(0).getX(), 1);
-        assertEquals(results.get(0).getY(), 2);
-        assertEquals(results.get(0).getDirection(), Direction.fromCode("N"));
+        assertEquals(results.get(0), new Position(1, 2, NORTH));
     }
 
     @Test
@@ -94,9 +88,7 @@ public class MowerServiceTest {
 
         // Then
         assertEquals(results.size(), 1);
-        assertEquals(results.get(0).getX(), 2);
-        assertEquals(results.get(0).getY(), 2);
-        assertEquals(results.get(0).getDirection(), Direction.fromCode("N"));
+        assertEquals(results.get(0), new Position(2, 2, NORTH));
     }
 
     @Test
