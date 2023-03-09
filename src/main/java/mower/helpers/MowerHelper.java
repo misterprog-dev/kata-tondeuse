@@ -16,7 +16,7 @@ import static mower.helpers.PositionHelper.getMowerPosition;
 
 public class MowerHelper {
 
-    public static List<Mower> constructMower(Iterator<String> fileLinesIterator, LimitGarden limitGarden) throws MowerInitialPositionException {
+    public static List<Mower> constructMowers(Iterator<String> fileLinesIterator, LimitGarden limitGarden) throws MowerInitialPositionException {
         List<Mower> mowers = new ArrayList<>();
 
         while(fileLinesIterator.hasNext()) {

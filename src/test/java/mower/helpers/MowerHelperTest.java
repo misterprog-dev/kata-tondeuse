@@ -22,7 +22,7 @@ public class MowerHelperTest {
         Iterator<String> fileLinesIterator = asList("1 2 N", "GAGAGAGA", "3 3 E", "AADAAGAGA").iterator();
 
         // when
-        List<Mower> mowers = MowerHelper.constructMower(fileLinesIterator, new LimitGarden(5, 5));
+        List<Mower> mowers = MowerHelper.constructMowers(fileLinesIterator, new LimitGarden(5, 5));
 
         // then
         assertEquals(mowers.size(), 2);
