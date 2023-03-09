@@ -3,7 +3,7 @@ package mower.helpers;
 import mower.exception.FileFormatInvalidException;
 import mower.exception.MowerInitialPositionException;
 import mower.models.Command;
-import mower.models.LimitGarden;
+import mower.models.Garden;
 import mower.models.Mower;
 import mower.models.Position;
 
@@ -14,7 +14,7 @@ import static mower.helpers.PositionHelper.getMowerPosition;
 
 public class MowerHelper {
 
-    public static List<Mower> constructMowers(Iterator<String> fileLinesIterator, LimitGarden limitGarden) throws MowerInitialPositionException, FileFormatInvalidException {
+    public static List<Mower> constructMowers(Iterator<String> fileLinesIterator, Garden garden) throws MowerInitialPositionException, FileFormatInvalidException {
         List<Mower> mowers = new ArrayList<>();
 
         while(fileLinesIterator.hasNext()) {
@@ -23,7 +23,7 @@ public class MowerHelper {
                     .map(Command::fromCode)
                     .filter(Objects::nonNull)
                     .collect(toList());
-            mowers.add(new Mower(limitGarden, position, mowerCommands));
+            mowers.add(new Mower(garden, position, mowerCommands));
         }
 
         return mowers;

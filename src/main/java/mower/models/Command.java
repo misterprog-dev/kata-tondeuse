@@ -8,7 +8,7 @@ public enum Command {
     GO_AHEAD("A"),
     RIGHT("D"),
     LEFT("G");
-    private String code;
+    private final String code;
 
     Command(String code) {
         this.code = code;

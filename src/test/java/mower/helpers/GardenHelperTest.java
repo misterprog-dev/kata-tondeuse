@@ -1,7 +1,7 @@
 package mower.helpers;
 
 import mower.exception.InvalidGardenSizeException;
-import mower.models.LimitGarden;
+import mower.models.Garden;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
@@ -41,10 +41,10 @@ public class GardenHelperTest {
         String[] fileLines = {"5","3"};
 
         // When
-        LimitGarden limitGarden = GardenHelper.getLimitGarden(fileLines);
+        Garden garden = GardenHelper.getLimitGarden(fileLines);
 
         // Then
-        assertEquals(limitGarden.getX(), 5);
-        assertEquals(limitGarden.getY(), 3);
+        assertEquals(garden.getX(), 5);
+        assertEquals(garden.getY(), 3);
     }
 }

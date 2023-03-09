@@ -3,7 +3,7 @@ package mower.services;
 import mower.exception.FileFormatInvalidException;
 import mower.exception.InvalidGardenSizeException;
 import mower.exception.MowerInitialPositionException;
-import mower.models.LimitGarden;
+import mower.models.Garden;
 import mower.models.Mower;
 import mower.models.Position;
 
@@ -20,13 +20,13 @@ public class MowerService {
     private final List<Mower> mowers = new ArrayList<>();
 
     public MowerService(String filePath) throws IOException, FileFormatInvalidException, InvalidGardenSizeException, MowerInitialPositionException {
-        List<String> fileLines = readFile(filePath);
+        List<String> fileContent = readFile(filePath);
 
-        Iterator<String> fileLinesIterator = fileLines.iterator();
-        String[] firstLineOfFile = fileLinesIterator.next().split(" ");
-        LimitGarden limitGarden = getLimitGarden(firstLineOfFile);
+        Iterator<String> fileContentIterator = fileContent.iterator();
+        String[] gardenLine = fileContentIterator.next().split(" ");
+        Garden garden = getLimitGarden(gardenLine);
 
-        mowers.addAll(constructMowers(fileLinesIterator, limitGarden));
+        mowers.addAll(constructMowers(fileContentIterator, garden));
     }
 
     public List<Position> launchMowers() {

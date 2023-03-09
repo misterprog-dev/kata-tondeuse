@@ -3,7 +3,7 @@ package mower.helpers;
 import mower.exception.FileFormatInvalidException;
 import mower.exception.MowerInitialPositionException;
 import mower.models.Command;
-import mower.models.LimitGarden;
+import mower.models.Garden;
 import mower.models.Mower;
 import mower.models.Position;
 import org.junit.Test;
@@ -23,7 +23,7 @@ public class MowerHelperTest {
         Iterator<String> fileLinesIterator = asList("1 2 N", "GAGAGAGA", "3 3 E", "AADAAGAGA").iterator();
 
         // when
-        List<Mower> mowers = MowerHelper.constructMowers(fileLinesIterator, new LimitGarden(5, 5));
+        List<Mower> mowers = MowerHelper.constructMowers(fileLinesIterator, new Garden(5, 5));
 
         // then
         assertEquals(mowers.size(), 2);
@@ -42,7 +42,7 @@ public class MowerHelperTest {
         Iterator<String> fileLinesIterator = asList("1 2 N", "GAGZXSDYTA").iterator();
 
         // when
-        List<Mower> mowers = MowerHelper.constructMowers(fileLinesIterator, new LimitGarden(5, 5));
+        List<Mower> mowers = MowerHelper.constructMowers(fileLinesIterator, new Garden(5, 5));
 
         // then
         Mower firstMower = mowers.get(0);

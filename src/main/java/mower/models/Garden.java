@@ -1,10 +1,10 @@
 package mower.models;
 
-public class LimitGarden {
+public class Garden {
     private final int x;
     private final int y;
 
-    public LimitGarden(int x, int y) {
+    public Garden(int x, int y) {
         this.x = x;
         this.y = y;
     }

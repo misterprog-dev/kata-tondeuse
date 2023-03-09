@@ -3,12 +3,12 @@ package mower.models;
 import java.util.List;
 
 public class Mower {
-    private LimitGarden limitGarden;
+    private Garden garden;
     private Position position;
     private List<Command> commands;
 
-    public Mower(LimitGarden limitGarden, Position position, List<Command> commands) {
-        this.limitGarden = limitGarden;
+    public Mower(Garden garden, Position position, List<Command> commands) {
+        this.garden = garden;
         this.position = position;
         this.commands = commands;
     }
@@ -32,7 +32,7 @@ public class Mower {
         switch (command) {
             case RIGHT -> position.turnRight();
             case LEFT -> position.turnLeft();
-            case GO_AHEAD -> position.goAhead(limitGarden);
+            case GO_AHEAD -> position.goAhead(garden);
         };
     }
 }
