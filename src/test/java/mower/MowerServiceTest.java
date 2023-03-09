@@ -11,38 +11,15 @@ import mower.models.Position;
 import mower.services.MowerService;
 import org.junit.Test;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.List;
 
 import static java.util.Arrays.asList;
 import static java.util.stream.Collectors.toList;
+import static mower.Constant.baseDirForTestData;
 import static org.junit.Assert.*;
 
 public class MowerServiceTest {
-    private final String baseDirForTestData = "src/test/resources/data/";
-
-    @Test
-    public void should_Return_exception_When_FileDontExist() {
-        // when
-        Exception exception = assertThrows(FileNotFoundException.class, () -> new MowerService("//"));
-
-        // then
-        String expectedMessage = "File not found";
-        String actualMessage = exception.getMessage();
-        assertTrue(actualMessage.contains(expectedMessage));
-    }
-
-    @Test
-    public void should_Return_exception_When_FileFormatIsNotCorrect() {
-        // when
-        Exception exception = assertThrows(FileFormatInvalidException.class, () -> new MowerService(baseDirForTestData + "IncorrectFormat.txt"));
-
-        // then
-        String expectedMessage = "File format invalid";
-        String actualMessage = exception.getMessage();
-        assertTrue(actualMessage.contains(expectedMessage));
-    }
 
     @Test
     public void should_return_exception_for_invalid_garden() {
