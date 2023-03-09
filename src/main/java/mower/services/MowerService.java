@@ -88,6 +88,8 @@ public class MowerService {
     }
 
     public String displayFinalMowerPosition(List<Position> positions) {
-        return "";
+        StringBuilder result = new StringBuilder();
+        positions.forEach(position -> result.append(position.getFinalPosition()).append(" "));
+        return result.toString().trim();
     }
 }

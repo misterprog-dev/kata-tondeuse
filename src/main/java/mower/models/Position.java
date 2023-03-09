@@ -42,10 +42,17 @@ public class Position {
                 break;
             case EAST:
                 if (limitGarden.getX() > x) x += 1;
+                break;
             case WEST:
                 if (limitGarden.getX() > 0) x -= 1;
+                break;
             case SOUTH:
                 if (limitGarden.getY() > 0) y -= 1;
+                break;
         };
+    }
+
+    public String getFinalPosition() {
+        return x + " " + y + " " + direction.getCode();
     }
 }
