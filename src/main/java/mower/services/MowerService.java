@@ -86,4 +86,8 @@ public class MowerService {
         mowers.forEach(mower -> positions.add(mower.run()));
         return positions;
     }
+
+    public String displayFinalMowerPosition(List<Position> positions) {
+        return "";
+    }
 }

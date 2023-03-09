@@ -152,4 +152,17 @@ public class MowerServiceTest {
         assertEquals(results.get(0).getY(), 2);
         assertEquals(results.get(0).getDirection(), Direction.fromCode("N"));
     }
+
+    @Test
+    public void should_display_mower_final_position() throws InvalidGardenSizeException, MowerInitialPositionException, FileNotFoundException, FileFormatInvalidException {
+        // Given
+        MowerService mowerService = new MowerService(asList("5 5", "1 2 N", "GAGAGAGAA", "3 3 E", "AADAADADDA"));
+        List<Position> positions = mowerService.launchMowers();
+
+        // When
+        String result = mowerService.displayFinalMowerPosition(positions);
+
+        // Then
+        assertEquals(result, "1 3 N 5 1 E");
+    }
 }
