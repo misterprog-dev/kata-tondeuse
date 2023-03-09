@@ -1,7 +1,6 @@
 package mower.helpers;
 
 import mower.exception.FileFormatInvalidException;
-import mower.services.MowerService;
 import org.junit.Test;
 
 import java.io.FileNotFoundException;
@@ -37,7 +36,7 @@ public class FileReaderHelperTest {
     @Test
     public void should_Return_exception_When_FileFormatIsNotCorrect() {
         // when
-        Exception exception = assertThrows(FileFormatInvalidException.class, () -> new MowerService(baseDirForTestData + "IncorrectFormat.txt"));
+        Exception exception = assertThrows(FileFormatInvalidException.class, () -> FileReaderHelper.readFile(baseDirForTestData + "IncorrectFormat.txt"));
 
         // then
         String expectedMessage = "File format invalid";
