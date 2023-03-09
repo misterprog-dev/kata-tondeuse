@@ -1,5 +1,6 @@
 package mower.helpers;
 
+import mower.exception.FileFormatInvalidException;
 import mower.exception.MowerInitialPositionException;
 import mower.models.Command;
 import mower.models.LimitGarden;
@@ -17,7 +18,7 @@ import static org.junit.Assert.assertEquals;
 
 public class MowerHelperTest {
     @Test
-    public void should_constructMower_WithLimitGardenAndPositionAndCommand() throws MowerInitialPositionException {
+    public void should_constructMower_WithLimitGardenAndPositionAndCommand() throws MowerInitialPositionException, FileFormatInvalidException {
         // Given
         Iterator<String> fileLinesIterator = asList("1 2 N", "GAGAGAGA", "3 3 E", "AADAAGAGA").iterator();
 

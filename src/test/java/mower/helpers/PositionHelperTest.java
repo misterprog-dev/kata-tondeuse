@@ -21,7 +21,7 @@ public class PositionHelperTest {
     }
 
     @Test
-    public void should_return_position_for_mower() throws MowerInitialPositionException {
+    public void should_return_position_for_mower() throws MowerInitialPositionException, FileFormatInvalidException {
         // When
         Position result = PositionHelper.getMowerPosition("3 2 E");
 
@@ -35,7 +35,7 @@ public class PositionHelperTest {
         Exception exception = assertThrows(FileFormatInvalidException.class, () -> PositionHelper.getMowerPosition("1 2 Z"));
 
         // then
-        String expectedMessage = "Invalid position for Mower";
+        String expectedMessage = "Invalid direction for Initial position";
         String actualMessage = exception.getMessage();
         assertTrue(actualMessage.contains(expectedMessage));
     }

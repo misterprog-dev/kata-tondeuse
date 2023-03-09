@@ -1,5 +1,6 @@
 package mower.helpers;
 
+import mower.exception.FileFormatInvalidException;
 import mower.exception.MowerInitialPositionException;
 import mower.models.Command;
 import mower.models.LimitGarden;
@@ -16,7 +17,7 @@ import static mower.helpers.PositionHelper.getMowerPosition;
 
 public class MowerHelper {
 
-    public static List<Mower> constructMowers(Iterator<String> fileLinesIterator, LimitGarden limitGarden) throws MowerInitialPositionException {
+    public static List<Mower> constructMowers(Iterator<String> fileLinesIterator, LimitGarden limitGarden) throws MowerInitialPositionException, FileFormatInvalidException {
         List<Mower> mowers = new ArrayList<>();
 
         while(fileLinesIterator.hasNext()) {
