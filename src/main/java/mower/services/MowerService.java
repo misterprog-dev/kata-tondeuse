@@ -15,6 +15,7 @@ import static java.lang.Integer.parseInt;
 import static java.util.Arrays.stream;
 import static java.util.stream.Collectors.toList;
 import static mower.helpers.FileReaderHelper.readFile;
+import static mower.helpers.GardenHelper.getLimitGarden;
 import static org.apache.commons.lang3.StringUtils.isNumeric;
 
 public class MowerService {
@@ -30,13 +31,6 @@ public class MowerService {
         constructMowers(fileLinesIterator, limitGarden);
     }
 
-    private LimitGarden getLimitGarden(String[] line) throws InvalidGardenSizeException {
-        if (isNotGardenSizeValid(line)) {
-            throw new InvalidGardenSizeException("Garden size is invalid");
-        }
-        return new LimitGarden(parseInt(line[0]), parseInt(line[1]));
-    }
-
     private void constructMowers(Iterator<String> fileLinesIterator, LimitGarden limitGarden) throws MowerInitialPositionException {
         while(fileLinesIterator.hasNext()) {
             Position mowerPosition = getPosition(fileLinesIterator.next());
@@ -45,10 +39,6 @@ public class MowerService {
                     .collect(toList());
             mowers.add(new Mower(limitGarden, mowerPosition, mowerCommands));
         }
-    }
-
-    private boolean isNotGardenSizeValid(String[] line) {
-        return stream(line).count() < 2 || !isNumeric(line[0]) || !isNumeric(line[1]);
     }
 
     private Position getPosition(String mowerPosition) throws MowerInitialPositionException {

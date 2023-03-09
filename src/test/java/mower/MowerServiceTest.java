@@ -22,17 +22,6 @@ import static org.junit.Assert.*;
 public class MowerServiceTest {
 
     @Test
-    public void should_return_exception_for_invalid_garden() {
-        // when
-        Exception exception = assertThrows(InvalidGardenSizeException.class, () -> new MowerService(baseDirForTestData + "InvalidGarden.txt"));
-
-        // then
-        String expectedMessage = "Garden size is invalid";
-        String actualMessage = exception.getMessage();
-        assertTrue(actualMessage.contains(expectedMessage));
-    }
-
-    @Test
     public void should_constructMower_WithLimitGardenAndPositionAndCommand() throws InvalidGardenSizeException, IOException, FileFormatInvalidException, MowerInitialPositionException {
         // when
         MowerService mowerService = new MowerService(baseDirForTestData + "ConstructMower.txt");
