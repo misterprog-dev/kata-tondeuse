@@ -75,7 +75,7 @@ public class MowerServiceTest {
         List<Position> positions = mowerService.launchMowers();
 
         // When
-        String result = mowerService.displayFinalMowerPosition(positions);
+        String result = mowerService.getFinalMowersPositions(positions);
 
         // Then
         assertEquals(result, "1 3 N 5 1 E");

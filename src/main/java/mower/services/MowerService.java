@@ -35,7 +35,7 @@ public class MowerService {
         return positions;
     }
 
-    public String displayFinalMowerPosition(List<Position> positions) {
+    public String getFinalMowersPositions(List<Position> positions) {
         StringBuilder result = new StringBuilder();
         positions.forEach(position -> result.append(position.getFinalPosition()).append(" "));
         return result.toString().trim();

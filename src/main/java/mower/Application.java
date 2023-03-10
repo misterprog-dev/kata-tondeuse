@@ -8,7 +8,6 @@ import mower.services.MowerService;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.List;
 
 public class Application {
@@ -20,6 +19,6 @@ public class Application {
 
         MowerService mowerService = new MowerService(args[0]);
         List<Position> positions = mowerService.launchMowers();
-        System.out.println(mowerService.displayFinalMowerPosition(positions));
+        System.out.println(mowerService.getFinalMowersPositions(positions));
     }
 }
