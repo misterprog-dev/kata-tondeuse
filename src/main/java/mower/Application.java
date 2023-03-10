@@ -19,6 +19,8 @@ public class Application {
 
         MowerService mowerService = new MowerService(args[0]);
         List<Position> positions = mowerService.launchMowers();
+        System.out.println("\n--- Affichage des positions finales des tondeuses ---");
         System.out.println(mowerService.getFinalMowersPositions(positions));
+        System.out.println("-----------------------------------------------------\n");
     }
 }
